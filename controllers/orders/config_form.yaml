@@ -1,0 +1,11 @@
+name: Orders
+modelClass: Beysong\Proevent\Models\Order
+form: $/beysong/proevent/models/order/fields.yaml
+defaultRedirect: beysong/proevent/orders
+create:
+    redirect: 'beysong/proevent/orders/update/:id'
+    redirectClose: beysong/proevent/orders
+update:
+    redirect: beysong/proevent/orders
+    redirectClose: beysong/proevent/orders
+preview: {  }

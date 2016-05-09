@@ -1,0 +1,22 @@
+plugin:
+    name: 'beysong.proevent::lang.plugin.name'
+    description: 'beysong.proevent::lang.plugin.description'
+    author: Beysong
+    icon: oc-icon-apple
+    homepage: 'http://www.baidu.com'
+navigation:
+    proevent-event-event:
+        label: Proevent
+        url: beysong/proevent/proevents
+        icon: icon-life-ring
+        permissions: {  }
+        sideMenu:
+            proevent-event-order:
+                label: Orders
+                url: beysong/proevent/orders
+                icon: icon-sitemap
+                permissions: {  }
+            proevent-event-event:
+                label: Proevent
+                url: beysong/proevent/proevents
+                icon: icon-sitemap

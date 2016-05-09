@@ -1,0 +1,5 @@
+title: Proevents
+modelClass: Beysong\Proevent\Models\Event
+nameFrom: test
+toolbar:
+    buttons: reorder_toolbar

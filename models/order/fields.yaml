@@ -1,0 +1,22 @@
+fields:
+    total_amount:
+        label: 'Total Amount'
+        span: auto
+        type: number
+    paid_amount:
+        label: 'Paid Amount'
+        span: auto
+        type: number
+    status:
+        label: Status
+        options:
+            - 未支付
+            - 已支付
+            - 已完成
+            - 已删除
+        span: auto
+        type: dropdown
+    badge_code:
+        label: 'Badge Code'
+        span: auto
+        type: text

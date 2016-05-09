@@ -1,0 +1,16 @@
+name: Events
+modelClass: Beysong\Proevent\Models\Event
+form: $/beysong/proevent/models/event/fields.yaml
+defaultRedirect: beysong/proevent/proevents
+create:
+    title: 'Create Event'
+    redirect: 'beysong/proevent/proevents/update/:id'
+    redirectClose: beysong/proevent/proevents
+    flashSave: success
+update:
+    title: 'Update the Event'
+    redirect: beysong/proevent/proevents
+    redirectClose: beysong/proevent/proevents
+    flashSave: success
+preview:
+    title: 'Preview Event'

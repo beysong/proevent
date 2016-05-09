@@ -1,0 +1,20 @@
+columns:
+    id:
+        label: ID
+        type: number
+        sortable: true
+    total_amount:
+        label: 'Total Amount'
+        type: number
+        sortable: true
+    paid_amount:
+        label: 'Paid Amount'
+        type: number
+        sortable: true
+    status:
+        label: Status
+        type: switch
+    badge_code:
+        label: 'Badge Code'
+        type: text
+        searchable: true

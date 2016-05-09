@@ -1,0 +1,25 @@
+columns:
+    id:
+        label: ID
+        type: number
+        sortable: true
+    first_name:
+        label: 'First Name'
+        type: text
+        searchable: true
+    last_name:
+        label: 'Last Name'
+        type: text
+        searchable: true
+    company:
+        label: Company
+        type: text
+        searchable: true
+    mobile:
+        label: Mobile
+        type: text
+        searchable: true
+    amount:
+        label: Amount
+        type: number
+        sortable: true

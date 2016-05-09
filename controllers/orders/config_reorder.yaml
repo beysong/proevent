@@ -1,0 +1,5 @@
+title: Orders
+modelClass: Beysong\Proevent\Models\Order
+nameFrom: sdfsdf
+toolbar:
+    buttons: reorder_toolbar

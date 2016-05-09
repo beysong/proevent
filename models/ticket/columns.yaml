@@ -1,0 +1,25 @@
+columns:
+    id:
+        label: ID
+        type: number
+        sortable: true
+    name:
+        label: Name
+        type: text
+        searchable: true
+    display_name:
+        label: 'Display Name'
+        type: text
+        searchable: true
+    price:
+        label: Price
+        type: number
+        sortable: true
+    start_time:
+        label: 'Start Time'
+        type: datetime
+        sortable: true
+    end_time:
+        label: 'End Time'
+        type: datetime
+        sortable: true

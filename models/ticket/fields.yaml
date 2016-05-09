@@ -1,0 +1,27 @@
+fields:
+    name:
+        label: Name
+        span: auto
+        type: text
+    display_name:
+        label: 'Display Name'
+        span: auto
+        type: text
+    price:
+        label: Price
+        span: auto
+        type: number
+    is_activated:
+        label: Activated
+        span: auto
+        type: switch
+    start_time:
+        label: 'Start Time'
+        mode: datetime
+        span: auto
+        type: datepicker
+    end_time:
+        label: 'End Time'
+        mode: datetime
+        span: auto
+        type: datepicker
