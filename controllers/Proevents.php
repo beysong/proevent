@@ -10,6 +10,7 @@ class Proevents extends Controller
     public $listConfig = 'config_list.yaml';
     public $formConfig = 'config_form.yaml';
     public $reorderConfig = 'config_reorder.yaml';
+    public $relationConfig = 'config_relation.yaml';
 
     public function __construct()
     {
