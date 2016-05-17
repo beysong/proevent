@@ -31,6 +31,11 @@ class Ticket extends Model
     ];
 
     public $belongsToMany = [
-        'order_details' => 'Beysong\Proevent\Models\OrderDetail'
+        'order_details' => [
+            'Beysong\Proevent\Models\OrderDetail',
+            'table'    => 'beysong_proevent_order_detail_ticket',
+            'key'      => 't_id',
+            'otherKey' => 'od_id'
+        ]
     ];
 }

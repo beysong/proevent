@@ -1,49 +1,53 @@
 fields: {  }
 tabs:
+    defaultTab: Details
     fields:
         is_activated:
             label: Activate
             span: auto
             type: switch
-            tab: 'Tab 1'
+            tab: 'Details'
         name:
             label: Name
             span: auto
             required: 1
             type: text
-            tab: 'Tab 1'
+            tab: 'Details'
         display_name:
             label: 'Display Name'
             span: auto
             type: text
-            tab: 'Tab 1'
+            tab: 'Details'
         description:
             label: Description
             size: tiny
             span: auto
             type: textarea
-            tab: 'Tab 1'
+            tab: 'Details'
         currency:
             label: Currency
             span: auto
             type: text
-            tab: 'Tab 1'
+            tab: 'Details'
         start_time:
             label: 'Start Time'
             mode: datetime
             span: auto
             required: 1
             type: datepicker
-            tab: 'Tab 1'
+            tab: 'Details'
         end_time:
             label: 'End Time'
             mode: datetime
             span: auto
             required: 1
             type: datepicker
-            tab: 'Tab 1'
-        ticket:
-            span: auto
-            path: field_tickets
+            tab: 'Details'
+        tickets:
             type: partial
-            tab: 'Tab 2'
+            path: field_tickets
+            tab: Tickets
+        orders:
+            type: partial
+            path: field_orders
+            tab: Orders

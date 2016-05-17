@@ -1,0 +1,11 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+order_details:
+    label: Order Details
+    view:
+        list: $/beysong/proevent/models/orderdetail/columns.yaml
+        toolbarButtons: create|remove
+    manage:
+        form: $/beysong/proevent/models/orderdetail/fields.yaml

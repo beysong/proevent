@@ -10,13 +10,3 @@ navigation:
         url: beysong/proevent/proevents
         icon: icon-life-ring
         permissions: {  }
-        sideMenu:
-            proevent-event-order:
-                label: Orders
-                url: beysong/proevent/orders
-                icon: icon-sitemap
-                permissions: {  }
-            proevent-event-event:
-                label: Proevent
-                url: beysong/proevent/proevents
-                icon: icon-sitemap

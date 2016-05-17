@@ -53,3 +53,7 @@ fields:
         span: auto
         required: 1
         type: number
+    tickets:
+        label: Tickets
+        type: relation
+        nameFrom: name

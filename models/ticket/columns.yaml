@@ -17,9 +17,9 @@ columns:
         sortable: true
     start_time:
         label: 'Start Time'
-        type: datetime
+        type: timestamp
         sortable: true
     end_time:
         label: 'End Time'
-        type: datetime
+        type: timestamp
         sortable: true

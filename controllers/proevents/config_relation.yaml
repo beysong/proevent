@@ -2,25 +2,18 @@
 #  Relation Behavior Config
 # ===================================
 
-# tickets:
-#     label: Tickets
-#     view:
-#         list: $/beysong/proevent/models/ticket/columns.yaml
-#         toolbarButtons: add|remove
-#     manage:
-#         showSearch: true
-#         recordsPerPage: 10
-#         list: $/beysong/proevent/models/ticket/columns.yaml
-#         form: $/beysong/proevent/models/ticket/fields.yaml
-
 tickets:
     label: Tickets
     view:
-        list: $/beysong/proevent/models/orderdetail/columns.yaml
-        toolbarButtons: add|remove
-    manage:
-        showSearch: true
-        recordsPerPage: 10
         list: $/beysong/proevent/models/ticket/columns.yaml
-    pivot:
-        form: $/beysong/proevent/models/orderdetail/fields.yaml
+        toolbarButtons: create|remove
+    manage:
+        form: $/beysong/proevent/models/ticket/fields.yaml
+
+orders:
+    label: Orders
+    view:
+        list: $/beysong/proevent/models/order/columns.yaml
+        toolbarButtons: create|remove
+    manage:
+        form: $/beysong/proevent/models/order/fields.yaml

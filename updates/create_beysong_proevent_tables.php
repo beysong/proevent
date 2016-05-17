@@ -70,9 +70,9 @@ class CreateBeysongProeventTables extends Migration
         //订单详细表和门票表多对多关联表
         Schema::create('beysong_proevent_order_detail_ticket', function($table)
         {
-            $table->integer('order_detail_id')->unsigned();
-            $table->integer('ticket_id')->unsigned();
-            //$table->primary(['order_detail_id', 'ticket_id']);
+            $table->integer('od_id')->unsigned();
+            $table->integer('t_id')->unsigned();
+            $table->primary(['od_id', 't_id'], 'odt_id');
             $table->string('name')->nullable();
             $table->string('display_name')->nullable();
             $table->text('description')->nullable();
@@ -84,7 +84,7 @@ class CreateBeysongProeventTables extends Migration
         {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('event_id')->unsigned()->index();
+            $table->integer('event_id')->unsigned()->nullable()->index();
             $table->string('name')->nullable();
             $table->string('display_name')->nullable();
             $table->text('description')->nullable();

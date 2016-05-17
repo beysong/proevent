@@ -1,1 +1,7 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('beysong/proevent/orders') ?>">Orders</a></li>
+        <li><?= e(trans($this->pageTitle)) ?></li>
+    </ul>
+<?php Block::endPut() ?>
 <?= $this->listRender() ?>

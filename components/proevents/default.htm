@@ -1,0 +1,169 @@
+<div class="container">
+{% set tickets = __SELF__.tickets %}
+{% if tickets %}
+	<ul>
+    {% for ticket in tickets %}
+        <li>{{ ticket.name }}</li>
+    {% endfor %}
+	</ul>
+{% endif %}
+</div>
+<div class="container" id="user_list" style="display:none;">
+    <div class="text-center customer-title">
+        参会人员信息
+    </div>
+    <div style="margin-top:20px;" role="main" class="container theme-showcase users-limit">
+        <div class="table-responsive">
+          <!--pc-->
+            <table class="table table-condensed">
+            <thead>
+              <tr>
+                <th class="col-md-2">姓名</th>
+                <th class="col-md-2">公司</th>
+                <th class="col-md-2">职位</th>
+                <th class="col-md-2">手机</th>
+                <th class="col-md-2">邮箱</th>
+                <th class="col-md-1 text-center">操作</th>
+              </tr>
+            </thead>
+            <tbody class="user_list_body">
+            </tbody>
+          </table>
+
+        </div>
+
+    </div>
+    <div style="margin-top:20px;" role="main" class="container theme-showcase">
+        <button id="user_add_btn" class="btn btn-default"  type="submit"><span class="glyphicon glyphicon-plus"></span>添加参会人员</button>
+    </div>
+
+    <div style="margin-top:20px;" role="main" class="container theme-showcase text-center">
+
+    </div>
+
+</div>
+
+<div class="container" id="user_add">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	        <h3 class="panel-title">添加参会人员信息</h3>
+	    </div>
+	    <div class="panel-body">
+	<!--	<form id="addPersonForm" data-request="{{__SELF__}}::onRegisterPersons" data-request-update="'{{__SELF__}}::list': '#result'">-->
+		<form id="addPersonForm">
+			<fieldset class="person_info">
+		        <div class="form-group">
+		            <input type="text" class="form-control" value="" name="first_name" placeholder="First Name" />
+		        </div>
+		        <div class="form-group">
+		            <input type="text" class="form-control" value="" name="last_name" placeholder="Last Name" />
+		        </div>
+		        <div class="form-group">
+		            <input type="text" class="form-control" value="" name="company" placeholder="Company" />
+		        </div>
+		        <div class="form-group">
+		            <input type="text" class="form-control" value="" name="title" placeholder="Title" />
+		        </div>
+		        <div class="form-group">
+		            <input type="text" class="form-control" value="" name="mobile" placeholder="Mobile" />
+		        </div>
+		        <div class="form-group">
+		            <input type="text" class="form-control" value="" name="email" placeholder="Email" />
+		        </div>
+		        <div class="form-group">
+		        {% if tickets %}
+				    {% for ticket in tickets %}
+				        <input type="checkbox" name="tickets[]" value="{{ ticket.id }}" />{{ ticket.name }}
+				    {% endfor %}
+				{% endif %}
+		        </div>
+			</fieldset>
+		    <div class="form-group">
+		        <input type="hidden" name="form_request" value="{{__SELF__}}::onRegisterPersons" />
+		        <input type="hidden" name="form_update" value="{{__SELF__}}::list" />
+		        <input type="hidden" name="event_id" value="{{ __SELF__.event_id }}" />
+		        <input type="hidden" name="user_id" value="2" />
+                <input type="hidden" name="tmp_user_id" value="0" />
+		    </div>
+		</form>
+
+	    <div class="form-group">
+	        <a class="btn btn-default addperson" href="javascript:void(0)">取消</a>
+	        <button class="btn btn-default submit"  type="submit">保存</button>
+	    </div>
+		        
+		<div id="result"></div>
+		</div>
+	</div>
+</div>
+
+<div class="container theme-showcase pay-next ng-scope text-center">
+	<button id="show_pay_btn" style="display:none;" class="btn btn-lg btn-info" type="button">下一步</button>
+</div>
+<div id="payment_type" class="container" style="display:none;">
+    <div ng-if="pay.show" class="text-center customer-title ng-scope">
+        选择支付方式
+    </div>
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-success active">
+            <input type="radio" name="payment" id="alipay_btn" autocomplete="off" checked> 支付宝
+        </label>
+        <label class="btn btn-success">
+            <input type="radio" name="payment" id="huikuan_btn" autocomplete="off"> 银行汇款
+        </label>
+        <label class="btn btn-success">
+            <input type="radio" name="payment" id="wechat_btn" autocomplete="off"> 微信支付
+        </label>
+    </div>
+    <div ng-if="pay.show" role="main" class="container theme-showcase pay-tip ng-scope">
+        <div class="pay-tip-title">
+            温馨提示
+        </div>
+        <div class="pay-tip-des">
+            <ul>
+                <li>支付成功后，我们会将参与发式发送至您的邮箱中，请注意查收，如未收到邮件，会议当天也可通过手机号码进行签到。</li>
+                <li>门票一经售出，不支持退票，敬请谅解。</li>
+                <li>如需发票，请正确填写发票抬头，发票一经开出，恕不更改；发票类型统一为“会议展览服务费”普通/增值税发票；将于付款后3个工作日之内寄送出。</li>
+            </ul>
+        </div>
+    </div>
+    <div id="huikuan_btn_text" style="display:none;">
+        <p>用户：上海梅花信息股份有限公司<br />
+        开户行：招商银行上海分行天山支行<br />
+        帐号：214980376210001<br />
+        付款后请拍摄凭据发送到邮箱：event@meihua.info(注明“姓名、公司、活动、名称”)
+        </p>
+    </div>
+    <div id="alipay_btn_text"></div>
+    <div id="wechat_btn_text" style="display:none;"><img src="/storage/temp/erweima.png" /></div>
+    <div ng-if="pay.show" role="main" class="container theme-showcase pay-info ng-scope">
+        <div class="row">
+            <div class="col-md-11">
+              <table class="table table-condensed">
+                <tbody>
+                    <tr>
+                        <td>
+                            发票信息：
+                            <strong>
+                                <input type="checkbox">
+                                是
+                            </strong>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <strong>
+                                <input type="checkbox">
+                                否
+                            </strong>
+                        </td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button ng-click="signup()" class="btn btn-lg btn-info" type="button">提交</button>
+            <input type="hidden" id="hfId" name="hfId">
+            <input type="submit" class="hidden" id="btnResponseHtml" value="" name="btnResponseHtml">
+        </div>
+    </div>
+</div>

@@ -27,7 +27,7 @@ class Event extends Model
     public $table = 'beysong_proevent_events';
 
     public $hasMany = [
-        'tickets' => 'Beysong\Proevent\Models\Ticket',
-        'orders' => 'Beysong\Proevent\Models\Order',
+        'tickets' => ['Beysong\Proevent\Models\Ticket'],
+        'orders' => ['Beysong\Proevent\Models\Order'],
     ];
 }

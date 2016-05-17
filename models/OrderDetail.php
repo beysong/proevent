@@ -34,8 +34,8 @@ class OrderDetail extends Model
         'tickets' => [
             'Beysong\Proevent\Models\Ticket',
             'table'    => 'beysong_proevent_order_detail_ticket',
-            'key'      => 'order_detail_id',
-            'otherkey' => 'ticket_id'
+            'key'      => 'od_id',
+            'otherKey' => 't_id'
         ]
     ];
 }

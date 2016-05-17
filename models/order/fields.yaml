@@ -20,3 +20,7 @@ fields:
         label: 'Badge Code'
         span: auto
         type: text
+    order_details:
+        type: partial
+        path: field_order_details
+        tab: Order Details
