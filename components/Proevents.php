@@ -62,7 +62,8 @@ class Proevents extends \Cms\Classes\ComponentBase
 
     public function onRegisterPersons()
     {	
-    	$first_name = post('first_name');
+
+    	/*$first_name = post('first_name');
         $last_name = post('last_name');
         $company = post('company');
         $title = post('title');
@@ -73,8 +74,8 @@ class Proevents extends \Cms\Classes\ComponentBase
 
         $event_id = post('event_id');
         $user_id = post('user_id');
-        $this->page['result'] = array('1','42','124');
-		//return array('result'=>124);
+        $this->page['result'] = array('1','42','124');*/
+		return json_encode(post('userlist'));
 
     }
 

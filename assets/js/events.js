@@ -8,6 +8,17 @@ var ticketValidators = {
     users = []
     ;
 $(document).ready(function() {
+    testarray = [];
+    testitem = {kskd:23,laks:"ksldfk"};
+    testarray.push(testitem);
+    $('#submit_btn').click(function(){
+        $.request($('input[name=form_request]').val(), {
+            data: {userlist : users},
+            success: function(data) {
+                console.log(data);
+            }
+        })
+    });
 
     $('input:radio[name="payment"]').on('change', function () {
         $('input:radio[name="payment"]').each(function() {
@@ -109,21 +120,21 @@ $(document).ready(function() {
             var $form = $(e.target);
 
             var tmp_user_id = 0;
+            var tickets_id =  $("input[name='tickets[]']:checked").map(function(){
+                                    return this.value;
+                                }).get();
             if($('input[name=tmp_user_id]').val() == 0){
                 tmp_user_id = users.length == 0 ? 1 : users[users.length - 1].id + 1;
-                var tickets_id =  $("input[name='tickets[]']:checked").map(function(){
-                                        return this.value;
-                                    }).get();
 
                 var tmp_user = {
-                    id: tmp_user_id,
-                    first_name: $('input[name=first_name]').val(),
-                    last_name: $('input[name=last_name]').val(),
-                    company: $('input[name=company]').val(),
-                    title: $('input[name=title]').val(),
-                    mobile: $('input[name=mobile]').val(),
-                    email: $('input[name=email]').val(),
-                    ticket: tickets_id
+                    "id": tmp_user_id,
+                    "first_name": $('input[name=first_name]').val(),
+                    "last_name": $('input[name=last_name]').val(),
+                    "company": $('input[name=company]').val(),
+                    "title": $('input[name=title]').val(),
+                    "mobile": $('input[name=mobile]').val(),
+                    "email": $('input[name=email]').val(),
+                    "tickets": tickets_id
                 };
                 //alert(tmp_user);
                 users.push(tmp_user);
@@ -138,6 +149,7 @@ $(document).ready(function() {
                         users[idx].title = $('input[name=title]').val();
                         users[idx].mobile = $('input[name=mobile]').val();
                         users[idx].email = $('input[name=email]').val();
+                        users[idx].tickets = tickets_id;
                         return false;
                     }
                 });
@@ -205,16 +217,16 @@ function user_edit(id){
             $('input[name=email]').val(obj.email);
             $('input[name=tmp_user_id]').val(obj.id);
 
-            $('input:checkbox[name="tickets[]"]').each(function() {
-                attr_id = $(this).attr('id');
-                if ($.inArray($(this).value, obj.tickets)) {
-                    $(this).attr('checked');
+            $('input:checkbox[name="tickets[]"]').each(function(t_index,t_value) {
+                if ($.inArray(t_value.value, obj.tickets) >= 0) {console.log(obj.tickets);
+                    t_value.checked = true;
+                }else{alert(111);
+                    t_value.checked = false;
                 }
             });
-
             return false;
         }
-    });user_add_btn
+    });
     $('#user_add').show(300);
     $('#user_add_btn').hide(300);
 }
