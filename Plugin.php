@@ -8,7 +8,8 @@ class Plugin extends PluginBase
 	public function registerComponents()
 	{
 	    return [
-	        'Beysong\Proevent\Components\Proevents' => 'Proevents'
+	        'Beysong\Proevent\Components\Proevents' => 'Proevents',
+	        'Beysong\Proevent\Components\OrderView' => 'OrderView'
 	    ];
 	}
 

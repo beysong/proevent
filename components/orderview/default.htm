@@ -1,0 +1,82 @@
+
+<div class="container" id="user_list">
+    <div class="text-center customer-title">
+        参会人员信息
+    </div>
+    <div style="margin-top:20px;" role="main" class="container theme-showcase users-limit">
+        <div class="table-responsive">
+          {% set data = __SELF__.orderdetail %}
+            {% if data %}
+            <table class="table table-condensed">
+            <thead>
+              <tr>
+                <th class="col-md-2">姓名</th>
+                <th class="col-md-2">公司</th>
+                <th class="col-md-2">职位</th>
+                <th class="col-md-2">手机</th>
+                <th class="col-md-2">邮箱</th>
+              </tr>
+            </thead>
+            <tbody class="user_list_body">
+            {% for detail in data.order_details %}
+              <tr>
+                <td class="col-md-2">{{ detail.first_name }} {{ detail.last_name }}</td>
+                <td class="col-md-2">{{ detail.company }}</td>
+                <td class="col-md-2">{{ detail.title }}</td>
+                <td class="col-md-2">{{ detail.mobile }}</td>
+                <td class="col-md-2">{{ detail.email }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+          {% endif %}
+        </div>
+    </div>
+</div>
+<div class="container">
+总价：{{ data.order.total_amount }}
+已支付：{{ data.order.paid_amount }}
+活动：{{ data.event.name }}
+</div>
+
+<div id="payment_type" class="container">
+    <div ng-if="pay.show" class="text-center customer-title ng-scope">
+        选择支付方式
+    </div>
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-success active">
+            <input type="radio" name="payment" id="alipay_btn" value="alipay" autocomplete="off" checked> 支付宝
+        </label>
+        <label class="btn btn-success">
+            <input type="radio" name="payment" id="huikuan_btn" value="huikuan" autocomplete="off"> 银行汇款
+        </label>
+        <label class="btn btn-success">
+            <input type="radio" name="payment" id="wechat_btn" value="wechat" autocomplete="off"> 微信支付
+        </label>
+    </div>
+    <div ng-if="pay.show" role="main" class="container theme-showcase pay-tip ng-scope">
+        <div class="pay-tip-title">
+            温馨提示
+        </div>
+        <div class="pay-tip-des">
+            <ul>
+                <li>支付成功后，我们会将参与发式发送至您的邮箱中，请注意查收，如未收到邮件，会议当天也可通过手机号码进行签到。</li>
+                <li>门票一经售出，不支持退票，敬请谅解。</li>
+                <li>如需发票，请正确填写发票抬头，发票一经开出，恕不更改；发票类型统一为“会议展览服务费”普通/增值税发票；将于付款后3个工作日之内寄送出。</li>
+            </ul>
+        </div>
+    </div>
+    <div id="huikuan_btn_text" style="display:none;">
+        <p>用户：上海梅花信息股份有限公司<br />
+        开户行：招商银行上海分行天山支行<br />
+        帐号：214980376210001<br />
+        付款后请拍摄凭据发送到邮箱：event@meihua.info(注明“姓名、公司、活动、名称”)
+        </p>
+    </div>
+    <div id="alipay_btn_text">
+        <input type="hidden" name="order_id" value="{{ data.order.id }}" />
+        <input type="hidden" name="form_request" value="{{__SELF__}}::onPay" />
+        <button class="btn btn-default" id="alipay_pay">去支付</button>
+    </div>
+    <div id="wechat_btn_text" style="display:none;"><img src="/storage/temp/erweima.png" /></div>
+</div>

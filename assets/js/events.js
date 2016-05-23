@@ -8,13 +8,16 @@ var ticketValidators = {
     users = []
     ;
 $(document).ready(function() {
-    testarray = [];
-    testitem = {kskd:23,laks:"ksldfk"};
-    testarray.push(testitem);
     $('#submit_btn').click(function(){
+        var eventid = $('input[name=event_id]').val();
+        var paycode = $('input[name=payment]').val();
         $.request($('input[name=form_request]').val(), {
-            data: {userlist : users},
+            data: {userlist : users, event_id : eventid, pay_code : paycode},
             success: function(data) {
+                //付款
+                pingppPc.createPayment(charge, function(result, err){
+                // 处理错误信息
+                });
                 console.log(data);
             }
         })
@@ -218,7 +221,7 @@ function user_edit(id){
             $('input[name=tmp_user_id]').val(obj.id);
 
             $('input:checkbox[name="tickets[]"]').each(function(t_index,t_value) {
-                if ($.inArray(t_value.value, obj.tickets) >= 0) {console.log(obj.tickets);
+                if ($.inArray(t_value.value, obj.tickets) >= 0) {
                     t_value.checked = true;
                 }else{alert(111);
                     t_value.checked = false;
