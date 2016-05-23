@@ -29,6 +29,8 @@ class CreateBeysongProeventTables extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->integer('event_id')->unsigned()->index();
+            //订单编号
+            $table->string('order_no', 100)->nullable();
             //订单总金额,订单总额
             $table->decimal('total_amount', 11, 2)->default(0.00);
             //已付金额

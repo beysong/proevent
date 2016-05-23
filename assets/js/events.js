@@ -8,17 +8,24 @@ var ticketValidators = {
     users = []
     ;
 $(document).ready(function() {
+
+    var paycode = 'huikuan';
     $('#submit_btn').click(function(){
         var eventid = $('input[name=event_id]').val();
-        var paycode = $('input[name=payment]').val();
         $.request($('input[name=form_request]').val(), {
             data: {userlist : users, event_id : eventid, pay_code : paycode},
             success: function(data) {
-                //付款
-                pingppPc.createPayment(charge, function(result, err){
-                // 处理错误信息
-                });
-                console.log(data);
+
+                if (paycode == 'alipay') {
+                    //付款
+                    pingppPc.createPayment(data.result, function(result, err){
+                        console.log(data.result);
+                    // 处理错误信息
+                    });
+
+                } else {
+                    document.location.href = data.result;
+                }
             }
         })
     });
@@ -27,6 +34,7 @@ $(document).ready(function() {
         $('input:radio[name="payment"]').each(function() {
             attr_id = $(this).attr('id');
             if ($(this).is(':checked') == true) {
+                paycode = $(this).val();
                 $("#"+attr_id+"_text").show(300);
             }else{
                 $("#"+attr_id+"_text").hide(300);

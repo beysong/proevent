@@ -98,6 +98,8 @@ class Proevents extends \Cms\Classes\ComponentBase
             $order->total_amount += $order_detail->amount;
             $order->event_id = post('event_id');
             $order->pay_code = post('pay_code');
+            $order->order_no = date('YmdHis').time();
+            $order->status = 1;
             $order->save();
 
             $order_detail = $order->order_details()->save($order_detail);
@@ -107,35 +109,56 @@ class Proevents extends \Cms\Classes\ComponentBase
 
         }
 
+        $gourl = array();
         //邮件提醒
         if ($order->total_amount <= 0) {
+            //更新支付状态
+            Order::where('id', $order->id)
+                    ->update('pay_status', 1);
             # 发送注册成功邮件（发送badge code）
+            # mail()
         } else {
+            switch (post('pay_code')) {
+                case 'alipay':
+                    $pay_charge = $this->gopay($order->id);
+                    return json_encode($pay_charge);
+                    break;
+                
+                case 'huikuan':
+                    # code...
+                    $gourl = 'www.baidu.com';
+                    break;
+                
+                case 'wechat':
+                    # code...
+                    $gourl = 'www.baidu.com';
+                    break;
+                
+                default:
+                    # code...
+                    $gourl = 'www.baidu.com';
+                    break;
+            }
             # 发送注册确认邮件（提醒付款）
+            # mail()
         }
         
-        $message = array(
-                'result'=>'success'
-            );
-
-
-
-		return json_encode($message);
+		return json_encode($gourl);
 
     }
 
     public function gopay($orderid){
         \Pingpp\Pingpp::setApiKey('sk_test_0WnnH4nLuH4O5CavH8e5anjT');
-        \Pingpp\Pingpp::setPrivateKeyPath('../rsa_private_key.pem');
+        \Pingpp\Pingpp::setPrivateKeyPath(storage_path('rsa_private_key.pem'));
 
         $extra = array('success_url'=>'www.baidu.com');
-        return \Pingpp\Charge::create(
+        return $ch = \Pingpp\Charge::create(
             array(
                 'order_no'  => '123456789',
                 'app'       => array('id' => 'app_40WXHKmb5Oa5qfLO'),
-                'channel'   => 'alipay',
+                'channel'   => 'alipay_pc_direct',
                 'amount'    => 100,
-                'client_ip' => '127.0.0.1',
+                'client_ip' => '183.204.130.127',
                 'currency'  => 'cny',
                 'subject'   => 'Your Subject',
                 'body'      => 'Your Body',
@@ -144,7 +167,4 @@ class Proevents extends \Cms\Classes\ComponentBase
         );
     }
 
-    public function cliendpay(){
-        
-    }
 }

@@ -5,9 +5,9 @@ $(document).ready(function() {
             data: {order_id : order_id},
             success: function(data) {
                 //付款
-                pingppPc.createPayment(data, function(result, err){
+                pingppPc.createPayment(data.result, function(result, err){
                 // 处理错误信息
-                console.log(data);
+                console.log(result);
                 });
             }
         })

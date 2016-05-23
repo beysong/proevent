@@ -23,19 +23,23 @@ class OrderView extends \Cms\Classes\ComponentBase
         \Pingpp\Pingpp::setApiKey('sk_test_0WnnH4nLuH4O5CavH8e5anjT');
         \Pingpp\Pingpp::setPrivateKeyPath(storage_path('rsa_private_key.pem'));
 
+        $order_id = post('order_id');
         $extra = array('success_url'=>'www.baidu.com');
-        return \Pingpp\Charge::create(
+        $ch = \Pingpp\Charge::create(
             array(
                 'order_no'  => '123456789',
                 'app'       => array('id' => 'app_40WXHKmb5Oa5qfLO'),
-                'channel'   => 'alipay',
+                'channel'   => 'alipay_pc_direct',
                 'amount'    => 100,
-                'client_ip' => '127.0.0.1',
+                'client_ip' => '183.204.130.127',
                 'currency'  => 'cny',
                 'subject'   => 'Your Subject',
-                'body'      => 'Your Body'
+                'body'      => 'Your Body',
+                'extra'     => $extra
             )
         );
+
+        return json_encode($ch);
     }
 
     // order
@@ -66,75 +70,5 @@ class OrderView extends \Cms\Classes\ComponentBase
 
     }
 
-    public function onRegisterPersons()
-    {	
 
-        $order = new Order();
-
-        foreach(post('userlist') as $k=>$v){
-            $order_detail = new OrderDetail();
-            $order_detail->first_name = $v['first_name'];
-            $order_detail->last_name = $v['last_name'];
-            $order_detail->company = $v['company'];
-            $order_detail->title = $v['title'];
-            $order_detail->mobile = $v['mobile'];
-            $order_detail->email = $v['email'];
-            $order_detail->first_name = $v['first_name'];
-            //计算总价格
-            $order_detail->amount = \Db::table('beysong_proevent_tickets')
-                                        ->whereIn('id', $v['tickets'])
-                                        ->sum('price');
-            //订单总价
-            $order->total_amount += $order_detail->amount;
-            $order->event_id = post('event_id');
-            $order->pay_code = post('pay_code');
-            $order->save();
-
-            $order_detail = $order->order_details()->save($order_detail);
-
-            $order_detail->tickets()->sync($v['tickets']);
-
-
-        }
-
-        //邮件提醒
-        if ($order->total_amount <= 0) {
-            # 发送注册成功邮件（发送badge code）
-        } else {
-            # 发送注册确认邮件（提醒付款）
-        }
-        
-        $message = array(
-                'result'=>'success'
-            );
-
-
-
-		return json_encode($message);
-
-    }
-
-    public function gopay($orderid){
-        \Pingpp\Pingpp::setApiKey('sk_test_0WnnH4nLuH4O5CavH8e5anjT');
-        \Pingpp\Pingpp::setPrivateKeyPath('../rsa_private_key.pem');
-
-        $extra = array('success_url'=>'www.baidu.com');
-        return \Pingpp\Charge::create(
-            array(
-                'order_no'  => '123456789',
-                'app'       => array('id' => 'app_40WXHKmb5Oa5qfLO'),
-                'channel'   => 'alipay',
-                'amount'    => 100,
-                'client_ip' => '127.0.0.1',
-                'currency'  => 'cny',
-                'subject'   => 'Your Subject',
-                'body'      => 'Your Body',
-                'extra'     => $extra
-            )
-        );
-    }
-
-    public function cliendpay(){
-        
-    }
 }
