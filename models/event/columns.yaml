@@ -13,11 +13,11 @@ columns:
         searchable: true
     start_time:
         label: 'Start Time'
-        type: timestamp
+        type: text
         sortable: true
     end_time:
         label: 'End Time'
-        type: timestamp
+        type: text
         sortable: true
     is_activated:
         label: 'Is Activated'

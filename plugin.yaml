@@ -3,7 +3,7 @@ plugin:
     description: 'beysong.proevent::lang.plugin.description'
     author: Beysong
     icon: oc-icon-apple
-    homepage: 'http://www.baidu.com'
+    homepage: 'http://www.themeshow.cn'
 navigation:
     proevent-event-event:
         label: Proevent

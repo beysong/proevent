@@ -18,11 +18,11 @@ class CreateBeysongProeventTables extends Migration
             $table->text('description')->nullable();
             $table->tinyInteger('is_activated')->default(1);
             $table->tinyInteger('status')->default(1);
-            $table->timestamp('start_time');
-            $table->timestamp('end_time');
+            $table->timestamp('start_time')->nullable();
+            $table->timestamp('end_time')->nullable();
             $table->timestamps();
         });
-        
+
         Schema::create('beysong_proevent_orders', function($table)
         {
             $table->engine = 'InnoDB';
@@ -64,7 +64,7 @@ class CreateBeysongProeventTables extends Migration
             $table->string('address', 100)->nullable();
             $table->string('zip', 32)->nullable();
             $table->string('photo', 128)->nullable();
-            
+
             //订单总额
             $table->decimal('amount', 11, 2)->default(0.00);
             $table->timestamps();
@@ -79,7 +79,7 @@ class CreateBeysongProeventTables extends Migration
             $table->string('display_name')->nullable();
             $table->text('description')->nullable();
             $table->decimal('price', 11, 2)->default(0.00);
-            
+
         });
 
         Schema::create('beysong_proevent_tickets', function($table)
@@ -92,8 +92,8 @@ class CreateBeysongProeventTables extends Migration
             $table->text('description')->nullable();
             $table->decimal('price', 11, 2)->default(0.00);
             $table->tinyInteger('is_activated')->default(1);
-            $table->timestamp('start_time');
-            $table->timestamp('end_time');
+            $table->timestamp('start_time')->nullable();
+            $table->timestamp('end_time')->nullable();
             $table->timestamps();
         });
     }
